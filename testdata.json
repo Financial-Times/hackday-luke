@@ -1,0 +1,45 @@
+{
+	title: "Test Org",
+	description: "Special Stuff",
+	stories: [
+		{
+			heading: "Headline 1",
+			standfirst: "Stuff about this Story.",
+			timestamp: "2016-02-29T12:35:48Z",
+			tags: [
+				{
+					url: "https://www.ft.com/topics/places/Saudi_Arabia",
+					label: "Saudi Arabia",
+				}
+			],
+			image: "http://im.ft-static.com/content/images/a60ae24b-b87f-439c-bf1b-6e54946b4cf2.img",
+		},
+		{
+			heading: "No image",
+			standfirst: "Text all the way.",
+			timestamp: "2016-09-29T14:35:48Z",
+			tags: [
+				{
+					url: "https://www.ft.com/topics/places/Saudi_Arabia",
+					label: "Saudi Arabia",
+				}
+			]
+		},
+		{
+			heading: "Multitags",
+			standfirst: "Metadata is fun.",
+			timestamp: "2016-09-29T14:35:48Z",
+			tags: [
+				{
+					url: "https://www.ft.com/stream/topicsId/MTk2YmJiYzgtNTkzNi00ZjZhLWE1NzAtNTQ3MTY0NTNjZDA1-VG9waWNz",
+					label: "Global economic growth",
+				},
+				{
+					url: "https://www.ft.com/topics/places/Saudi_Arabia",
+					label: "Saudi Arabia",
+				},
+			],
+			image: "http://prod-upp-image-read.ft.com/2b5c8f2c-a287-11e6-aa83-bcb58d1d2193",
+		}
+	],
+}

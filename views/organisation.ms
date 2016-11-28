@@ -45,11 +45,11 @@
 									{{/tags}}
 								</div>
 
-								<h2 class="o-card__heading">{{#url}}<a href="{{url}}">{{/url}}{{heading}}{{#url}}</a>{{/url}}</h2>
+								<h2 class="o-card__heading">{{#url}}<a href="{{url}}">{{/url}}{{title}}{{#url}}</a>{{/url}}</h2>
 
 								<p class="o-card__standfirst">{{standfirst}}</p>
 
-								{{#timestamp}}<time data-o-component="o-date" class="o-date o-card__timestamp" datetime="{{timestamp}}">{{timestamp}}</time>{{/timestamp}}
+								{{#publishedDate}}<time data-o-component="o-date" class="o-date o-card__timestamp" datetime="{{publishedDate}}">{{publishedDate}}</time>{{/publishedDate}}
 							</div>
 
 						</div>

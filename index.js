@@ -3,7 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 var mustacheExpress = require('mustache-express');
 
@@ -14,6 +15,7 @@ app.set('views', __dirname + '/views');
 
 /** Environment variables **/
 var port = process.env.PORT || 3004;
+var apihost = process.env.APIHOST || "http://localhost:8000/";
 
 var path = require('path');
 var ftwebservice = require('express-ftwebservice');
@@ -54,61 +56,29 @@ app.get('/', function (req, res) {
 	});
 });
 app.get('/org/:orgid', function (req, res) {
-	var testdata = {
-		title: "Test Org",
-		description: "Special Stuff",
-		stories: [
-			{
-				heading: "Headline 1",
-				standfirst: "Stuff about this Story.",
-				timestamp: "2016-02-29T12:35:48Z",
-				tags: [
-					{
-						url: "https://www.ft.com/topics/places/Saudi_Arabia",
-						label: "Saudi Arabia",
-					}
-				],
-				image: "http://im.ft-static.com/content/images/a60ae24b-b87f-439c-bf1b-6e54946b4cf2.img",
-			},
-			{
-				heading: "No image",
-				standfirst: "Text all the way.",
-				timestamp: "2016-09-29T14:35:48Z",
-				tags: [
-					{
-						url: "https://www.ft.com/topics/places/Saudi_Arabia",
-						label: "Saudi Arabia",
-					}
-				]
-			},
-			{
-				heading: "Multitags",
-				standfirst: "Metadata is fun.",
-				timestamp: "2016-09-29T14:35:48Z",
-				tags: [
-					{
-						url: "https://www.ft.com/stream/topicsId/MTk2YmJiYzgtNTkzNi00ZjZhLWE1NzAtNTQ3MTY0NTNjZDA1-VG9waWNz",
-						label: "Global economic growth",
-					},
-					{
-						url: "https://www.ft.com/topics/places/Saudi_Arabia",
-						label: "Saudi Arabia",
-					},
-				],
-				image: "http://prod-upp-image-read.ft.com/2b5c8f2c-a287-11e6-aa83-bcb58d1d2193",
+	fetch(apihost+"organisations/"+encodeURIComponent(req.params.orgid)).then(function(response) {
+		if (response.status >= 400) {
+			throw new Error("Received "+response.status+" response from API");
+		}
+		return response.json();
+	}).then(function (body) {
+		body.stories.forEach(function (story){
+			if (story.id) {
+				story.url = "https://www.ft.com/content/"+story.id;
 			}
-		],
-	};
-
-	testdata.stories.forEach(function (story){
-		if (story.uuid) {
-			story.url = "https://www.ft.com/content/"+story.uuid;
+			if (story.image) {
+				story.image = "https://image.webservices.ft.com/v1/images/raw/"+encodeURIComponent(story.image)+"?source=hackday-luke";
+			}
+		});
+		res.render('organisation', body);
+	}).catch(function (error) {
+		if (error.message == "Received 404 response from API"){
+			res.status(404).render('error', {message:"Organisation not found."});
+		} else {
+			console.error(error);
+			res.status(500).render('error', {message:"Sorry, an unknown error occurred."});
 		}
-		if (story.image) {
-			story.image = "https://image.webservices.ft.com/v1/images/raw/"+encodeURIComponent(story.image)+"?source=hackday-luke";
-		}
-	});
-	res.render('organisation', testdata);
+	})
 });
 
 app.use(function(req, res, next) {
