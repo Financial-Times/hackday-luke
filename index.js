@@ -34,17 +34,18 @@ ftwebservice(app, {
 	},
 
 	healthCheck: function() {
-		return [{
-			id: 'running',
-			name: "App Running",
-			ok: true,
-			severity: 1,
-			businessImpact: "Can't view results",
-			technicalSummary: "App isn't running",
-			panicGuide: "Start App",
-			checkOutput: output,
-			lastUpdated: new Date().toISOString(),
-		}];
+		return new Promise(function(resolve, reject) {
+			resolve([{
+				id: 'running',
+				name: "App Running",
+				ok: true,
+				severity: 1,
+				businessImpact: "Can't view hackday project",
+				technicalSummary: "App isn't running",
+				panicGuide: "Start App",
+				lastUpdated: new Date().toISOString(),
+			}]);
+		});
 	}
 });
 
