@@ -30,7 +30,7 @@
 			<div class="o-aside-panel__header">
 				<div class="ft-widget-regular-header">
 					<div class="o-header__logo o-header__logo--ft">
-						<a href="https://www.ft.com/">
+						<a href="https://www.ft.com/" target="__blank">
 							<abbr title="Financial Times">FT</abbr>
 						</a>
 						<h1 class="o-header__title">{{title}}</h1>
@@ -50,11 +50,11 @@
 							<div class="o-card__content">
 								<div class="o-card__meta">
 									{{#tags}}
-									<a href="{{url}}" class="o-card__tag">{{label}}</a>
+									<a href="{{url}}" class="o-card__tag" target="__blank">{{label}}</a>
 									{{/tags}}
 								</div>
 
-								<h2 class="o-card__heading">{{#url}}<a href="{{url}}">{{/url}}{{title}}{{#url}}</a>{{/url}}</h2>
+								<h2 class="o-card__heading">{{#url}}<a href="{{url}}" target="__blank">{{/url}}{{title}}{{#url}}</a>{{/url}}</h2>
 
 								<p class="o-card__standfirst">{{standfirst}}</p>
 
