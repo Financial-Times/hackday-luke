@@ -65,8 +65,12 @@ ftwebservice(app, {
 });
 
 app.get('/', function (req, res) {
-	res.render('index', {
-	});
+	if (req.query.orgid) {
+		var widgeturl = req.protocol+"://"+req.get("host")+"/org/"+encodeURIComponent(req.query.orgid);
+		res.render('index', {widgeturl: widgeturl});
+	} else {
+		res.render('index');
+	}
 });
 app.get('/org/:orgid', function (req, res) {
 	fetch(apihost+"organisations/"+encodeURIComponent(req.params.orgid)).then(function(response) {
