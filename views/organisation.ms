@@ -15,6 +15,14 @@
 			#content {
 				padding: 20px 0;
 			}
+			.o-aside-panel__header {
+				background: none;
+			}
+			.o-aside-panel__body {
+				border-top: 4px solid;
+				border-bottom: 4px solid;
+				border-color: #9b164f;
+			}
   		</style>
   	</head>
 	<body>
