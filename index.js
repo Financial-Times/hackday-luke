@@ -37,16 +37,29 @@ ftwebservice(app, {
 
 	healthCheck: function() {
 		return new Promise(function(resolve, reject) {
-			resolve([{
-				id: 'running',
-				name: "App Running",
-				ok: true,
-				severity: 1,
-				businessImpact: "Can't view hackday project",
-				technicalSummary: "App isn't running",
-				panicGuide: "Start App",
-				lastUpdated: new Date().toISOString(),
-			}]);
+
+			fetch(apihost+"__gtg").then(function(apiresponse) {
+				resolve([{
+					id: 'running',
+					name: "App Running",
+					ok: true,
+					severity: 1,
+					businessImpact: "Can't view hackday project",
+					technicalSummary: "App isn't running",
+					panicGuide: "Start App",
+					lastUpdated: new Date().toISOString(),
+				},{
+					id: 'api-connection',
+					name: "Can Connect to API",
+					ok: (apiresponse.status == 200),
+					severity: 1,
+					businessImpact: "Hackday demo won't work.",
+					technicalSummary: "Can't connect to `hackday-sarah`",
+					panicGuide: "Look for problems with the `hackday-sarah` API.  Check connectivity between this app and "+apihost,
+					output: apiresponse.status,
+					lastUpdated: new Date().toISOString(),
+				}]);
+			});
 		});
 	}
 });
