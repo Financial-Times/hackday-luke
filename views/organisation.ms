@@ -17,11 +17,14 @@
 			}
 			.o-aside-panel__header {
 				background: none;
+				border-bottom: 4px solid #9b164f;
 			}
 			.o-aside-panel__body {
-				border-top: 4px solid;
-				border-bottom: 4px solid;
-				border-color: #9b164f;
+				max-width: 500px;
+				margin: 0 auto;
+			}
+			.o-aside-panel {
+				border-bottom: 4px solid #9b164f;
 			}
   		</style>
   	</head>
