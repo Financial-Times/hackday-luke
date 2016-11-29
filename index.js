@@ -78,7 +78,7 @@ function enhanceStory(story) {
 		story.url = "https://www.ft.com/content/"+story.id;
 	}
 	if (story.image) {
-		story.image = "https://image.webservices.ft.com/v1/images/raw/"+encodeURIComponent(story.image)+"?source=hackday-luke";
+		story.image = "https://image.webservices.ft.com/v2/images/raw/"+encodeURIComponent(story.image)+"?source=hackday-luke&width=200&dpr=2";
 	}
 }
 app.get('/org/:orgid', function (req, res) {
