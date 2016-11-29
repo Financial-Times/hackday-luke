@@ -56,6 +56,14 @@
 						<input type="submit" class="o-buttons o-buttons--standout o-buttons--b2b" value="Generate Widget" />
 					</form>
 				{{/widgeturl}}
+				<div style="margin-top: 3em">
+					<h3>Example widgets</h3>
+					<ul>
+						<li><a href="/?orgid=a14bcf4b-556d-31a6-8bbc-3d53d0366999">Agropur</a></li>
+						<li><a href="/?orgid=296db2c2-2c98-3e47-8e2a-e85bdfc1beae">Ferrovial</a></li>
+						<li><a href="/?orgid=013f7fa7-aa26-3e20-84f1-fb8e5f7383ff">Barclays</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<script src="https://build.origami.ft.com/v2/bundles/js?modules=o-header@^4.0.0,o-buttons@^3.0.3,o-forms@^3.2.3,o-table@^5.0.3"></script>
