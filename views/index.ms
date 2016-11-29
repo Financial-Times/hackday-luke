@@ -2,7 +2,7 @@
 <html>
   	<head>
 		<meta charset="UTF-8">
-		<title>Hackday Project</title>
+		<title>Clients in Context</title>
 		<meta name=viewport content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-header-services@^1.0.0,o-buttons@^4.0.0,o-forms@^3.2.3,o-grid@^4.2.1,o-table@^5.0.3">
 		<style type="text/css">
@@ -30,7 +30,7 @@
 			<div class="o-header-services__top o-header-services__container">
 				<div class="o-header-services__ftlogo"></div>
 				<div class="o-header-services__title">
-					<h1 class="o-header-services__product-name"><a href="/">B2B Widget Generator</a></h1><span class="o-header-subrand__product-tagline ">Create an enhanced content search widget.</span>
+					<h1 class="o-header-services__product-name"><a href="/">Clients in Context</a></h1>
 				</div>
 			</div>
 		</header>
