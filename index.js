@@ -72,6 +72,15 @@ app.get('/', function (req, res) {
 		res.render('index');
 	}
 });
+
+function enhanceStory(story) {
+	if (story.id) {
+		story.url = "https://www.ft.com/content/"+story.id;
+	}
+	if (story.image) {
+		story.image = "https://image.webservices.ft.com/v1/images/raw/"+encodeURIComponent(story.image)+"?source=hackday-luke";
+	}
+}
 app.get('/org/:orgid', function (req, res) {
 	fetch(apihost+"organisations/"+encodeURIComponent(req.params.orgid)).then(function(response) {
 		if (response.status >= 400) {
@@ -79,13 +88,29 @@ app.get('/org/:orgid', function (req, res) {
 		}
 		return response.json();
 	}).then(function (body) {
-		body.stories.forEach(function (story){
-			if (story.id) {
-				story.url = "https://www.ft.com/content/"+story.id;
+		body.storyLists = [
+			{
+				"listTitle": "Stories about "+body.title,
+				"stories": body.stories,
+			},
+			{
+				"listTitle": "Stories from Subsidiaries",
+				"stories": body.subsidiaryStories,
+			},
+			{
+				"listTitle": "Stories from "+body.industryClassification,
+				"stories": body.industryClassificationStories,
+			},
+			{
+				"listTitle": "Stories related to "+body.title,
+				"stories": body.recommendedReadsStories,
 			}
-			if (story.image) {
-				story.image = "https://image.webservices.ft.com/v1/images/raw/"+encodeURIComponent(story.image)+"?source=hackday-luke";
-			}
+		];
+		delete body.stories;
+		body.storyLists.forEach(function (storyList) {
+			if (!storyList.stories) return;
+			storyList.hasStories = 1;
+			storyList.stories.forEach(enhanceStory);
 		});
 		res.render('organisation', body);
 	}).catch(function (error) {

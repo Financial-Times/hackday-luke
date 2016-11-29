@@ -38,7 +38,10 @@
 				</div>
 			</div>
 			<div class="o-aside-panel__body">
-				
+				{{description}}
+				{{#storyLists}}
+				{{#hasStories}}
+				<h3>{{listTitle}}</h3>
 				{{#stories}}
 					<div class="demo-container demo-container--landscape">
 						<div class="o-card o-card--landscape {{#image}}o-card--image-left{{/image}}" data-o-component="o-card">
@@ -65,6 +68,8 @@
 					</div>
 
 				{{/stories}}
+				{{/hasStories}}
+				{{/storyLists}}
 			</div>
 		</div>
 		<script src="https://build.origami.ft.com/v2/bundles/js?modules=o-header@^4.0.0,o-buttons@^3.0.3,o-table@^5.0.3,o-date@^2.2.1,o-card@^2.2.3,o-aside-panel@^2.0.3"></script>
