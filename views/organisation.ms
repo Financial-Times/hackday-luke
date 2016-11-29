@@ -22,6 +22,7 @@
 			.o-aside-panel__body {
 				max-width: 500px;
 				margin: 0 auto;
+				border-top: none;
 			}
 			.o-aside-panel {
 				border-bottom: 4px solid #9b164f;
